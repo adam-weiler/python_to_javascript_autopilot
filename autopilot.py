@@ -1,4 +1,5 @@
 def get_new_car():
+  # print('get_new_car')
   return {
     'city': 'Toronto',
     'passengers': 0,
@@ -6,15 +7,18 @@ def get_new_car():
   }
 
 def add_car(cars, new_car):
+  # print('add_car')
   cars.append(new_car)
   return "Adding new car to fleet. Fleet size is now {}.".format(len(cars))
 
 def pick_up_passenger(car):
+  # print('pick_up_passenger')
   car['passengers'] += 1
   car['gas'] -= 10
   return "Picked up passenger. Car now has {} passengers.".format(car['passengers'])
 
 def get_destination(car):
+  # print('get_destination')
   if car['city'] == 'Toronto':
     return 'Mississauga'
   elif car['city'] == 'Mississauga':
@@ -23,14 +27,17 @@ def get_destination(car):
     return 'Toronto'
 
 def fill_up_gas(car):
+  # print('fill_up_gas')
   old_gas = car['gas']
   car['gas'] = 100
   return "Filled up to {} on gas from {}.".format( get_gas_display(car['gas']), get_gas_display(old_gas) )
 
 def get_gas_display(gas_amount):
+  # print('get_gas_display')
   return "{}%".format(gas_amount)
 
 def drive(car, city_distance):
+  # print('drive')
   if car['gas'] < city_distance:
     return fill_up_gas(car)
 
@@ -39,18 +46,23 @@ def drive(car, city_distance):
   return "Drove to {}. Remaining gas: {}.".format(car['city'], get_gas_display(car['gas']))
 
 def drop_off_passengers(car):
+  # print('drop_off_passengers')
   previous_passengers = car['passengers']
   car['passengers'] = 0
   return "Dropped off {} passengers.".format(previous_passengers)
 
 def act(car):
+  print('act')
   distance_between_cities = 50
 
   if car['gas'] < 20:
+    # print('--Not enough gas.')
     return fill_up_gas(car)
   elif car['passengers'] < 3:
+    # print(f"--Not enough passengers.")
     return pick_up_passenger(car)
   else:
+    # print('--Third option.')
     if car['gas'] < distance_between_cities:
       return fill_up_gas(car)
 
@@ -59,6 +71,7 @@ def act(car):
     return "{} {}".format(drove_to, passengers_dropped)
 
 def command_fleet(cars):
+  # print('command_fleet')
   i = 1
   for car in cars:
     action = act(car)
@@ -68,6 +81,7 @@ def command_fleet(cars):
   print('---')
 
 def add_one_car_per_day(cars, num_days):
+  # print('add_one_car_per_day')
   for day in range(0, num_days):
     new_car = get_new_car()
     print(add_car(cars, new_car))
