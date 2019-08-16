@@ -1,21 +1,14 @@
-function get_new_car() {
-    // console.log('get_new_car');
-    return {
-        'city': 'Toronto',
-        'passengers': 0,
-        'gas': 100,
-    }
-}
+const get_new_car = function() { return { 'city': 'Toronto', 'passengers': 0, 'gas': 100, } }
 
 
-function add_car(cars, new_car) {
+const add_car = (cars, new_car) => {
     // console.log('add_car');
     cars.push(new_car);
     return `Adding new car to fleet. Fleet size is now ${cars.length}.`;
 }
 
 
-function pick_up_passenger(car) {
+const pick_up_passenger = (car) => {
     // console.log('pick_up_passenger');
     car['passengers'] += 1;
     car['gas'] -= 10;
@@ -23,7 +16,7 @@ function pick_up_passenger(car) {
 }
 
 
-function get_destination(car) {
+const get_destination = (car) => {
     // console.log('get_destination');
     if (car['city'] == 'Toronto') {
         return 'Mississauga';
@@ -35,7 +28,7 @@ function get_destination(car) {
 }
 
 
-function fill_up_gas(car) {
+const fill_up_gas = (car) => {
     // console.log('fill_up_gas');
     let old_gas = car['gas'];
     car['gas'] = 100;
@@ -43,13 +36,10 @@ function fill_up_gas(car) {
 }
 
 
-function get_gas_display(gas_amount) {
-    // console.log('get_gas_display');
-    return gas_amount;
-}
+const get_gas_display = (gas_amount) => gas_amount
 
 
-function drive(car, city_distance) {
+const drive = (car, city_distance) => {
     // console.log('drive');
     if (car['gas'] < city_distance) {
         return fill_up_gas(car);
@@ -61,7 +51,7 @@ function drive(car, city_distance) {
 }
 
 
-function drop_off_passengers(car) {
+const drop_off_passengers = (car) => {
     // console.log('drop_off_passengers');
     previous_passengers = car['passengers'];
     car['passengers'] = 0;
@@ -69,7 +59,7 @@ function drop_off_passengers(car) {
 }
 
 
-function act(car) {
+const act = (car) => {
     // console.log('act');
     let distance_between_cities = 50;
 
@@ -92,7 +82,7 @@ function act(car) {
 }
 
 
-function command_fleet(cars) {
+const command_fleet = (cars) => {
     // console.log('command_fleet');
     let i = 1;
     for (car of cars) {
@@ -105,7 +95,7 @@ function command_fleet(cars) {
 }
 
 
-function add_one_car_per_day(cars, num_days) {
+const add_one_car_per_day = (cars, num_days) => {
     // console.log('add_one_car_per_day');
     for (let day=0; day < num_days; day++) {
         let new_car = get_new_car();
